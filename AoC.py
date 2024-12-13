@@ -1,7 +1,6 @@
 from abc import abstractmethod
 from typing import List, Callable, Any
 import time
-import os
 
 class AoC:
     def __init__(self, example: bool = False):

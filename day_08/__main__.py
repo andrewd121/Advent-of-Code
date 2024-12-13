@@ -29,7 +29,6 @@ class Day8(AoC):
         #     if antinode in grid
         # }
 
-
     def part_2(self):
         grid = self.get_grid_complex()
 

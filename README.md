@@ -34,7 +34,7 @@ advent_of_code/
    - Provides utility functions like `parse_lines`, `parse_grid`, and timers.
    - Includes test helpers to verify your solutions.
 
-2. **Automated Setup with `setup.py`**:
+2. **Automated Setup with `setup_day.py`**:
    - Quickly creates a directory for a specified day with:
      - Boilerplate code in `__main__.py`.
      - Empty `example_data.txt` and `input_data.txt` files for the day.
@@ -52,7 +52,7 @@ advent_of_code/
 Run the setup script to create a workspace for a specific day:
 
 ```bash
-    python setup.py <day_number>
+    python setup_day.py <day_number>
 ```
 
 ### 2. Implementing Solutions

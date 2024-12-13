@@ -10,17 +10,12 @@ class AoC:
         :param example: Whether to use the example input file.
         """
         self.input_file = f"{'example' if example else 'input'}.txt"
-        self.input_data = self._read_input_file()
+        self.input_data = self.get_lines()
         self.start_time = None
 
-
-    def _read_input_file(self) -> List[str]:
-        """Reads the input file for the given day, either test or actual input."""
-        if not os.path.exists(self.input_file):
-            raise FileNotFoundError(f"Input file {self.input_file} not found!")
+    def get_lines(self) -> List[str]:
         with open(self.input_file, 'r') as f:
             return [line.strip() for line in f]
-
 
     def get_raw_file_content(self) -> str:
         """Return the raw data from the input file."""
@@ -34,13 +29,19 @@ class AoC:
         """
         return [parser(line) for line in self.input_data]
 
+    def get_grid(self) -> dict[tuple[int, int], str]:
+        return {(x, y): c for y, row in enumerate(self.input_data) for x, c in enumerate(row)}
+
+    def get_grid_complex(self) -> dict[complex, str]:
+        return {x + y * 1j: c for y, row in enumerate(self.input_data) for x, c in enumerate(row)}
+
+    # Looking to remove the following two methods
     def parse_grid_rows(self) -> tuple[tuple[str]]:
         """Parse input into a grid of characters."""
         return tuple(map(tuple, self.input_data))
 
     def parse_grid_columns(self) -> tuple[tuple[str]]:
         return tuple(zip(*self.parse_grid_rows()))
-
 
     def set_input_data(self, data: List[str]):
         """Directly set input data for testing without files."""

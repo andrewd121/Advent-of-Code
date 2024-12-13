@@ -13,21 +13,21 @@ class Day8(AoC):
             for freq in set(grid.values()) - {'.'} # frequencies - . is not a frequency
         }
 
-        antinodes = set()
-        for freq in freq_dict.values():
-            for a, b in combinations(freq, 2):
-                antinodes.update({antinode for antinode in [2 * b - a, 2 * a - b] if antinode in grid})
+        antinodes = {
+            antinode
+            for freq in freq_dict.values()
+            for a, b in combinations(freq, 2)
+            for antinode in (2 * b - a, 2 * a - b)
+            if antinode in grid
+        }
 
         return len(antinodes)
 
         # Alternative solution
-        # antinodes = {
-        #     antinode
-        #     for freq in freq_dict.values()
-        #     for a, b in combinations(freq, 2)
-        #     for antinode in (2 * b - a, 2 * a - b)
-        #     if antinode in grid
-        # }
+        # antinodes = set()
+        # for freq in freq_dict.values():
+        #     for a, b in combinations(freq, 2):
+        #         antinodes.update({antinode for antinode in [2 * b - a, 2 * a - b] if antinode in grid})
 
     def part_2(self):
         grid = self.get_grid_complex()

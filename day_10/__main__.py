@@ -5,7 +5,7 @@ class Day10(AoC):
         super().__init__(example=example)
 
     @staticmethod
-    def surounding_coords(coord):
+    def surrounding_coords(coord):
         return [(coord[0] + x, coord[1] + y) for x, y in [(-1, 0), (1, 0), (0, -1), (0, 1)]]
 
     def part_1(self):
@@ -18,7 +18,7 @@ class Day10(AoC):
 
             while trail.get(current_height):
                 for coord in trail[current_height]:
-                    for c in self.surounding_coords(coord):
+                    for c in self.surrounding_coords(coord):
                         if grid.get(c) == str(current_height + 1):
                             trail[current_height + 1] = trail.get(current_height + 1, set()) | {c}
 
@@ -39,7 +39,7 @@ class Day10(AoC):
             while trails and current_height < 9:
                 new_trails = set()
                 for trail in trails:
-                    for c in self.surounding_coords(trail[-1]):
+                    for c in self.surrounding_coords(trail[-1]):
                         if grid.get(c) == str(current_height + 1):
                             new_trails.add(trail + (c,))
                 trails = new_trails
